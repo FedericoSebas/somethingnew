@@ -655,16 +655,16 @@ Tools.positionElement = function (elem, x, y) {
 };
 
 Tools.colorPresets = [
-  { color: "#001f3f", key: "1" },
-  { color: "#FF4136", key: "2" },
-  { color: "#0074D9", key: "3" },
-  { color: "#FF851B", key: "4" },
-  { color: "#FFDC00", key: "5" },
-  { color: "#3D9970", key: "6" },
-  { color: "#91E99B", key: "7" },
-  { color: "#90468b", key: "8" },
-  { color: "#7FDBFF", key: "9" },
-  { color: "#AAAAAA", key: "0" },
+  { color: "#000000", key: "1" },
+  { color: "#001f3f", key: "2" },
+  { color: "#FF4136", key: "3" },
+  { color: "#0074D9", key: "4" },
+  { color: "#FF851B", key: "5" },
+  { color: "#FFDC00", key: "6" },
+  { color: "#3D9970", key: "7" },
+  { color: "#91E99B", key: "8" },
+  { color: "#90468b", key: "9" },
+  { color: "#7FDBFF", key: "0" },
   { color: "#E65194" },
 ];
 
@@ -770,3 +770,28 @@ Tools.svg.height.baseVal.value = document.body.clientHeight;
   }
   menu.addEventListener("mousedown", menu_mousedown);
 })();
+
+(function(){
+  document.addEventListener('wheel', function(event) {
+    if (event.altKey) {
+        const rangeInput = document.getElementById('chooseSize');
+        if (rangeInput) {
+            const step = parseInt(rangeInput.step) || 1;
+            let newValue = parseInt(rangeInput.value);
+
+            if (event.deltaY < 0) {
+                newValue += step;
+            } else {
+                newValue -= step;
+            }
+
+            newValue = Math.min(Math.max(newValue, parseInt(rangeInput.min)), parseInt(rangeInput.max));
+            rangeInput.value = newValue;
+            
+            // Optionally, dispatch an input event if needed
+            rangeInput.dispatchEvent(new Event('input'));
+        }
+        event.preventDefault();
+    }
+}, { passive: false });
+})()

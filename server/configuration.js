@@ -15,7 +15,7 @@ module.exports = {
     process.env["WBO_HISTORY_DIR"] || path.join(app_root, "server-data"),
 
   /** Folder from which static files will be served */
-  WEBROOT: process.env["WBO_WEBROOT"] || path.join(app_root, "client-data"),
+  WEBROOT: path.join(app_root, "client-data"),
 
   /** Number of milliseconds of inactivity after which the board should be saved to a file */
   SAVE_INTERVAL: parseInt(process.env["WBO_SAVE_INTERVAL"]) || 1000 * 2, // Save after 2 seconds of inactivity

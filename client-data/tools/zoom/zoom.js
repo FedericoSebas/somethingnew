@@ -82,7 +82,7 @@
   }
 
   function onwheel(evt) {
-    evt.preventDefault();
+   if(!evt.altKey){ evt.preventDefault();
     var multiplier =
       evt.deltaMode === WheelEvent.DOM_DELTA_LINE
         ? 30
@@ -115,7 +115,7 @@
         document.documentElement.scrollLeft + deltaX,
         document.documentElement.scrollTop + deltaY,
       );
-    }
+    }}
   }
   Tools.board.addEventListener("wheel", onwheel, { passive: false });
 
